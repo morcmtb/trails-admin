@@ -1,13 +1,15 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
 import { Switch } from 'react-router';
+
+import UnauthenticatedRoute from './templates/UnauthenticatedRoute';
+import AuthenticatedRoute from './templates/AuthenticatedRoute';
 
 import App from './pages/App';
 
 export function Router() {
   return (
     <Switch>
-      <Route path="/" component={App} />
+      <UnauthenticatedRoute path="/" component={App} />
     </Switch>
   );
 }
