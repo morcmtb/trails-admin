@@ -7,7 +7,7 @@ import Amplify from 'aws-amplify';
 import { store, history } from './store';
 import { Router } from './router';
 
-import aws_config from './../aws_config';
+import aws_config from './aws_config';
 
 import './index.scss';
 
