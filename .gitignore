@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# Dont Check In Secrets :P
+/src/aws_config.js
+
 # dependencies
 /node_modules
 /.pnp
