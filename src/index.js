@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import * as serviceWorker from './serviceWorker';
 import Amplify from 'aws-amplify';
-import { store, history } from './store';
+import { store, history } from './store.jsx';
 import { Router } from './router';
 
 import aws_config from './aws_config';

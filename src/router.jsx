@@ -6,6 +6,7 @@ import UnauthenticatedRoute from './templates/UnauthenticatedRoute';
 import AuthenticatedRoute from './templates/AuthenticatedRoute';
 
 import { Home } from './pages/Home';
+import { Login } from './pages/Login';
 import { NotFound } from './pages/NotFound';
 
 export function Router() {
@@ -31,7 +32,19 @@ export function Router() {
         exact
         path="/"
         component={Home}
-        authenticated={authenticated}
+        props={{
+          authenticated,
+          authenticating
+        }}
+      />
+      <UnauthenticatedRoute
+        exact
+        path="/login"
+        component={Login}
+        props={{
+          authenticated,
+          authenticating
+        }}
       />
       <UnauthenticatedRoute component={NotFound} />
     </Switch>

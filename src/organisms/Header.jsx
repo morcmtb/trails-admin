@@ -37,8 +37,8 @@ export function Header({ children, ...rest }) {
         <Left>
           <img src={logo} alt="MORC Logo" />
         </Left>
-        <Center>Trail Conditions</Center>
-        <Right></Right>
+        <Center>Trails Admin</Center>
+        <Right>0</Right>
       </Container>
     </StyledHeader>
   );
