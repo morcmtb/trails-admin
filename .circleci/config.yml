@@ -50,9 +50,9 @@ jobs:
           name: Deploy to S3
           command: aws s3 sync ~/repo/build s3://dev-roam-admin  --delete
 
-      # - run:
-      #     name: CloudFront
-      #     command: aws cloudfront create-invalidation --distribution-id $AWS_CF_DISTRIBUTION_ID --paths "/*"
+      - run:
+          name: CloudFront
+          command: aws cloudfront create-invalidation --distribution-id $AWS_CF_DISTRIBUTION_ID --paths "/*"
 
 workflows:
   version: 2

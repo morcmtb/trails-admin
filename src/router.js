@@ -52,12 +52,12 @@ class router extends Component {
   render() {
     return (
       <Switch>
-        <UnauthenticatedRoute path="/login" component={Login} />
+        <UnauthenticatedRoute exact path="/" component={Login} />
         <UnauthenticatedRoute path="/forgot" component={Forgot} />
         <UnauthenticatedRoute path="/register" component={Register} />
         <UnauthenticatedRoute path="/confirm" component={Confirm} />
 
-        <AuthenticatedRoute exact path="/" component={Home} />
+        <AuthenticatedRoute exact path="/trails" component={Home} />
         <AuthenticatedRoute exact path="/users" component={Users} />
         <AuthenticatedRoute exact path="/trails/:id" component={Trails} />
 
