@@ -1,0 +1,82 @@
+@charset "utf-8";
+
+// Import a Google Font
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+$family-sans-serif: 'Roboto', sans-serif;
+
+$blue: #009;
+$red: #ff1a1a;
+$black: #000;
+$black-invert: #fff;
+
+$info: $blue;
+$danger: $red;
+
+// Importing all of Bulma
+@import "bulma/bulma.sass";
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+    
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+html, body {
+	background-color:#FCFBE3;
+}
+
+.navbar {
+	border-bottom: 5px solid $red;
+}
+
+.is-trail {
+	cursor: pointer;
+}
+
+.level {
+	border-bottom: 1px solid $blue;
+  margin-bottom: 0rem !important;
+  padding: 1rem;
+  background-color:#ffffff;
+}
+
+.level-trail-back {
+	padding:2.5px;
+	color:$black-invert;
+	background-color:$black;
+	a {
+		color:$black-invert;
+	}
+}
+
+.container {
+  @media screen and (min-width: 320px) and (max-width: 480px) {
+    margin: 0rem;
+	}
+}
+
+.hero.is-fullheight {
+  min-height: calc(100vh - 97px);
+  margin-bottom: 0rem !important;
+}
+
+footer {
+	background-color: rgba(255,26,26,.75);
+    color: hsla(0,0%,100%,.5);
+    padding: 5px;
+    height: 40px;
+    strong {
+      color: hsla(0,0%,100%,.5);
+    }
+}
