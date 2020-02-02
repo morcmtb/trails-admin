@@ -52,7 +52,7 @@ jobs:
 
       - run:
           name: CloudFront
-          command: aws cloudfront create-invalidation --distribution-id $AWS_CF_DISTRIBUTION_ID --paths "/*"
+          command: aws cloudfront create-invalidation --distribution-id $AWS_DEV_CF_DISTRIBUTION_ID --paths "/*"
 
   stage:
     docker:
@@ -104,9 +104,9 @@ jobs:
           name: Deploy to S3
           command: aws s3 sync ~/repo/build s3://stage-trails-admin  --delete
 
-      # - run:
-      #     name: CloudFront
-      #     command: aws cloudfront create-invalidation --distribution-id $AWS_STAGE_CF_DISTRIBUTION_ID --paths "/*"
+      - run:
+          name: CloudFront
+          command: aws cloudfront create-invalidation --distribution-id $AWS_STAGE_CF_DISTRIBUTION_ID --paths "/*"
 
 workflows:
   version: 2
