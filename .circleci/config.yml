@@ -48,7 +48,7 @@ jobs:
 
       - run:
           name: Deploy to S3
-          command: aws s3 sync ~/repo/build s3://dev-roam-admin  --delete
+          command: aws s3 sync ~/repo/build s3://dev-trails-admin  --delete
 
       - run:
           name: CloudFront
