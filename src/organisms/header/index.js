@@ -47,9 +47,14 @@ class Header extends Component {
                 </Link>
               )}
               {isAuthenticated && (
-                <div className="navbar-item" onClick={() => logout()}>
-                  Logout
-                </div>
+                <>
+                  {/* <Link className="navbar-item" to="/users">
+                    Users
+                  </Link> */}
+                  <div className="navbar-item" onClick={() => logout()}>
+                    Logout
+                  </div>
+                </>
               )}
             </div>
           </div>
