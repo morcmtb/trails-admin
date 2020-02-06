@@ -21,6 +21,9 @@ jobs:
           name: Create aws_config.js
           command: |
             echo "export default {
+                  sls: {
+                    stage: 'dev'
+                  },
                   cognito: {
                     USER_POOL_ID: '${AWS_DEV_USER_POOL_ID}',
                     APP_CLIENT_ID: '${AWS_DEV_APP_CLIENT_ID}',
@@ -75,6 +78,9 @@ jobs:
           name: Create aws_config.js
           command: |
             echo "export default {
+                 sls: {
+                    stage: 'stage'
+                  },
                   cognito: {
                     USER_POOL_ID: '${AWS_STAGE_USER_POOL_ID}',
                     APP_CLIENT_ID: '${AWS_STAGE_APP_CLIENT_ID}',
@@ -129,6 +135,9 @@ jobs:
           name: Create aws_config.js
           command: |
             echo "export default {
+                 sls: {
+                    stage: 'prod'
+                  },
                   cognito: {
                     USER_POOL_ID: '${AWS_PROD_USER_POOL_ID}',
                     APP_CLIENT_ID: '${AWS_PROD_APP_CLIENT_ID}',

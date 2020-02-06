@@ -1,4 +1,5 @@
 import { API } from "aws-amplify";
+import aws_config from "./../aws_config";
 import { push } from "react-router-redux";
 export const TRAILS_REQUEST = "TRAILS_REQUEST";
 export const TRAILS_REQUEST_SUCCESS = "TRAILS_REQUEST_SUCCESS";
@@ -69,7 +70,7 @@ export function updateTrail(trail) {
   return (dispatch, getState) => {
     dispatch(trailsUpdate());
     const apiName = "api",
-      path = `/dev/trails/${trail.trailId}`,
+      path = `/${aws_config.sls.stage}/trails/${trail.trailId}`,
       myInit = {
         headers: {
           Accept: "application/json"
