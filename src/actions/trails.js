@@ -1,5 +1,5 @@
 import { API } from "aws-amplify";
-import aws_config from "../src/aws_config";
+import aws_config from "./../aws_config";
 import { push } from "react-router-redux";
 export const TRAILS_REQUEST = "TRAILS_REQUEST";
 export const TRAILS_REQUEST_SUCCESS = "TRAILS_REQUEST_SUCCESS";
