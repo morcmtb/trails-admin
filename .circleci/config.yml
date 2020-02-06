@@ -30,6 +30,9 @@ jobs:
                     REGION: '${AWS_REGION}',
                     IDENTITY_POOL_ID: '${AWS_DEV_IDENTITY_POOL_ID}'
                   },
+                   endpoint: {
+                    url: 'https://api.morcmtb.info'
+                  },
                   apiGateway: {
                     URL: '${AWS_DEV_API_GATEWAY}',
                     REGION: '${AWS_REGION}'
@@ -87,6 +90,9 @@ jobs:
                     REGION: '${AWS_REGION}',
                     IDENTITY_POOL_ID: '${AWS_STAGE_IDENTITY_POOL_ID}'
                   },
+                  endpoint: {
+                    url: 'https://stage-api.morcmtb.info'
+                  },
                   apiGateway: {
                     URL: '${AWS_STAGE_API_GATEWAY}',
                     REGION: '${AWS_REGION}'
@@ -143,6 +149,9 @@ jobs:
                     APP_CLIENT_ID: '${AWS_PROD_APP_CLIENT_ID}',
                     REGION: '${AWS_REGION}',
                     IDENTITY_POOL_ID: '${AWS_PROD_IDENTITY_POOL_ID}'
+                  },
+                   endpoint: {
+                    url: 'https://api.morcmtb.org'
                   },
                   apiGateway: {
                     URL: '${AWS_PROD_API_GATEWAY}',

@@ -33,7 +33,7 @@ Amplify.configure({
     endpoints: [
       {
         name: "trails",
-        endpoint: "https://api.morcmtb.info"
+        endpoint: aws_config.endpoint.url
       },
       {
         name: "api",
