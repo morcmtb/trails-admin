@@ -1,54 +1,54 @@
-import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import moment from 'moment'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { requestTrails, updateTrail } from '../../actions/trails'
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import moment from "moment";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { requestTrails, updateTrail } from "../../actions/trails";
 
 class TrailsDetail extends Component {
   state = {
-    trailStatus: '',
-    trailDescription: ''
-  }
+    trailStatus: "",
+    trailDescription: ""
+  };
   componentDidMount() {
     if (this.props.trails.length === 0) {
-      this.props.requestTrails()
+      this.props.requestTrails();
     }
   }
 
   handleSubmit = async e => {
-    e.preventDefault()
+    e.preventDefault();
     const { trails, match } = this.props,
-      trail = trails.filter(t => t.trailId === match.params.id)[0]
+      trail = trails.filter(t => t.trailId === match.params.id)[0];
 
     this.props.updateTrail({
       trailId: trail.trailId,
       trailDescription: this.state.trailDescription,
       trailStatus: this.state.trailStatus
-    })
-  }
+    });
+  };
 
   handleUpdateTrail = status => {
     this.setState({
       trailStatus: status
-    })
-  }
+    });
+  };
 
   handleChange = e => {
     this.setState({
       [e.currentTarget.id]: e.currentTarget.value
-    })
-  }
+    });
+  };
   render() {
     const { trails, match, isLoading } = this.props,
-      trail = trails.filter(t => t.trailId === match.params.id)[0]
+      trail = trails.filter(t => t.trailId === match.params.id)[0];
 
     return (
       <div className="container ">
         <div className="level level-trail-back">
           <div className="level-left">
-            <Link to="/">
-              <FontAwesomeIcon icon={['far', 'angle-left']} /> trails
+            <Link to="/trails">
+              <FontAwesomeIcon icon={["far", "angle-left"]} /> trails
             </Link>
           </div>
         </div>
@@ -60,9 +60,9 @@ class TrailsDetail extends Component {
                   <h3 className="title">{trail.trailName}</h3>
                   <time
                     className="subtitle"
-                    dateTime={moment(trail.updatedAt).format('YYYY-MM-DD h:mm')}
+                    dateTime={moment(trail.updatedAt).format("YYYY-MM-DD h:mm")}
                   >
-                    {moment(trail.updatedAt).format('LLLL')}
+                    {moment(trail.updatedAt).format("LLLL")}
                   </time>
                 </div>
               </div>
@@ -108,7 +108,7 @@ class TrailsDetail extends Component {
                         placeholder="Description of the trail conditions (optional)"
                         value={this.state.trailDescription}
                         onChange={e => {
-                          this.handleChange(e)
+                          this.handleChange(e);
                         }}
                       />
                     </div>
@@ -127,7 +127,7 @@ class TrailsDetail extends Component {
 
                 <button
                   onClick={this.handleSubmit}
-                  className={`button is-info ${isLoading ? 'is-loading' : ''}`}
+                  className={`button is-info ${isLoading ? "is-loading" : ""}`}
                 >
                   update
                 </button>
@@ -136,7 +136,7 @@ class TrailsDetail extends Component {
           </Fragment>
         )}
       </div>
-    )
+    );
   }
 }
 
@@ -144,14 +144,11 @@ const mapStateToProps = (state /*, ownProps*/) => {
   return {
     trails: state.trails.trails,
     isLoading: state.trails.isLoading
-  }
-}
+  };
+};
 const mapDispatchToProps = {
   requestTrails,
   updateTrail: trail => updateTrail(trail)
-}
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TrailsDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(TrailsDetail);
