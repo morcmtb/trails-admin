@@ -31,7 +31,7 @@ jobs:
                     IDENTITY_POOL_ID: '${AWS_DEV_IDENTITY_POOL_ID}'
                   },
                    endpoint: {
-                    url: "https://api.morcmtb.info"
+                    url: 'https://api.morcmtb.info'
                   },
                   apiGateway: {
                     URL: '${AWS_DEV_API_GATEWAY}',
@@ -91,7 +91,7 @@ jobs:
                     IDENTITY_POOL_ID: '${AWS_STAGE_IDENTITY_POOL_ID}'
                   },
                   endpoint: {
-                    url: "https://stage-api.morcmtb.info"
+                    url: 'https://stage-api.morcmtb.info'
                   },
                   apiGateway: {
                     URL: '${AWS_STAGE_API_GATEWAY}',
@@ -151,7 +151,7 @@ jobs:
                     IDENTITY_POOL_ID: '${AWS_PROD_IDENTITY_POOL_ID}'
                   },
                    endpoint: {
-                    url: "https://api.morcmtb.org"
+                    url: 'https://api.morcmtb.org'
                   },
                   apiGateway: {
                     URL: '${AWS_PROD_API_GATEWAY}',
