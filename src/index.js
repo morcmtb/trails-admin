@@ -1,55 +1,30 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, history, persistor } from './store';
+import * as serviceWorker from './serviceWorker';
 
-import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
-import { store, history } from './store'
-import * as serviceWorker from './serviceWorker'
+import { Router } from './router';
+import { Theming } from './Theming';
 
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
-
-import {
-  faAngleRight,
-  faThumbsUp,
-  faThumbsDown,
-  faLock,
-  faEnvelope,
-  faAngleLeft,
-  faCircleNotch,
-  faExclamationTriangle,
-  faCopyright,
-  faTrafficLightGo,
-  faTrafficLightStop
-} from '@fortawesome/pro-regular-svg-icons'
-
-import Router from './router'
-
-import './index.scss'
-
-library.add(
-  faAngleRight,
-  faThumbsUp,
-  faThumbsDown,
-  faLock,
-  faEnvelope,
-  faAngleLeft,
-  faCircleNotch,
-  faExclamationTriangle,
-  faCopyright,
-  faTrafficLightGo,
-  faTrafficLightStop
-)
+import './index.scss';
+import './FontAwesome';
 
 render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Router />
-    </ConnectedRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <ConnectedRouter history={history}>
+        <Theming>
+          <Router />
+        </Theming>
+      </ConnectedRouter>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
-)
-// If you want your app to work offline and load faster, you can change
+);
+// If you want your app./Themingk offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister()
+serviceWorker.unregister();
