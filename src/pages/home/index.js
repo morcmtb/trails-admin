@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Grid, makeStyles } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/auth';
 import { requestTrails } from '../../actions/trails';
-import Trail from '../../organisms/trails/trail';
 
+import { Trail } from './../../components/trail/ListView';
 class App extends Component {
   componentDidMount() {
     this.props.requestTrails();
@@ -11,11 +12,15 @@ class App extends Component {
   render() {
     const { trails } = this.props;
     return (
-      <div className="container">
+      <Grid container>
         {trails.map((t, i) => {
-          return <Trail trail={t} key={i} />;
+          return (
+            <Grid item xs={12} key={i}>
+              <Trail trail={t} />
+            </Grid>
+          );
         })}
-      </div>
+      </Grid>
     );
   }
 }

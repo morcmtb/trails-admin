@@ -12,6 +12,7 @@
     "aws-sdk": "^2.699.0",
     "bulma": "^0.9.0",
     "connected-react-router": "^6.8.0",
+    "luxon": "^1.24.1",
     "moment": "^2.26.0",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",

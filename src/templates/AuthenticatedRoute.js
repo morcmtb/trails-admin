@@ -1,13 +1,20 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { Container, makeStyles } from '@material-ui/core';
 import { Route } from 'react-router-dom';
 import { NavHeader } from './../components/header/NavHeader';
-import Header from '../organisms/header';
+
 import Footer from '../organisms/footer';
 
 const useStyles = makeStyles((theme) => ({
-  appBarSpacer: {
-    marginBottom: 55,
+  appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  },
+  container: {
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
   },
 }));
 
@@ -17,8 +24,12 @@ function Layout(props) {
   return (
     <div>
       <NavHeader />
-      <div className={classes.appBarSpacer} />
-      <section className="hero is-fullheight">{children}</section>
+      <main className={classes.content}>
+        <div className={classes.appBarSpacer} />
+        <Container maxWidth="lg" className={classes.container}>
+          {children}
+        </Container>
+      </main>
       <Footer />
     </div>
   );
