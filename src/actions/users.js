@@ -1,53 +1,42 @@
-import AWS from 'aws-sdk'
-import aws_config from '../../src/aws_config'
-const cognitoidentityserviceprovider = new AWS.CognitoIdentityServiceProvider({
-  region: aws_config.cognito.REGION
-})
+import { API } from 'aws-amplify';
+import aws_config from '../../src/aws_config';
 
-const params = {
-  UserPoolId: aws_config.cognito.USER_POOL_ID,
-
-  AttributesToGet: ['username', 'email'],
-  Filter: '',
-  Limit: 0
-}
-
-export const USERS_REQUEST = 'USERS_REQUEST'
-export const USERS_SUCCESS = 'USERS_SUCCESS'
-export const USERS_FAILURE = 'USERS_FAILURE'
+export const USERS_REQUEST = 'USERS_REQUEST';
+export const USERS_SUCCESS = 'USERS_SUCCESS';
+export const USERS_FAILURE = 'USERS_FAILURE';
 
 function getUsersRequest() {
   return {
-    type: USERS_REQUEST
-  }
+    type: USERS_REQUEST,
+  };
 }
 
 function getUsersResult(users) {
   return {
     type: USERS_SUCCESS,
-    users
-  }
+    users,
+  };
 }
 
 function getUsersFailure(error) {
   return {
     type: USERS_FAILURE,
-    error
-  }
+    error,
+  };
 }
 
 export function getUsers() {
   return (dispatch, getState) => {
-    dispatch(getUsersRequest())
-
-    return cognitoidentityserviceprovider.listUsers(params, function(
-      error,
-      data
-    ) {
-      if (error) {
-        dispatch(getUsersFailure(error))
-      }
-      dispatch(getUsersResult(data))
+    dispatch(getUsersRequest());
+    return API.get('users', '/v1/users', {
+      headers: { Accept: 'application/json' },
+      response: true,
     })
-  }
+      .then((res) => {
+        dispatch(getUsersResult(res));
+      })
+      .catch((error) => {
+        dispatch(getUsersFailure(error));
+      });
+  };
 }

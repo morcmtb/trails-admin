@@ -38,6 +38,11 @@ Amplify.configure({
         endpoint: aws_config.apiGateway.URL,
         region: aws_config.apiGateway.REGION,
       },
+      {
+        name: 'users',
+        endpoint: aws_config.endpoint.url,
+        region: aws_config.users.REGION,
+      },
     ],
   },
 });

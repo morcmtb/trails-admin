@@ -153,7 +153,7 @@ export function currentSession() {
       .then((res) => {
         console.log('currentSession', res);
         dispatch(loginSuccess(res));
-        dispatch(push('/trails'));
+        // dispatch(push('/trails'));
       })
       .catch((err) => {
         dispatch(push('/'));
