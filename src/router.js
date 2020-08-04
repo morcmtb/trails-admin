@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { Switch } from 'react-router';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Switch } from "react-router";
 
-import { currentSession } from './actions/auth';
+import { currentSession } from "./actions/auth";
 
-import UnauthenticatedRoute from './templates/UnauthenticatedRoute';
-import AuthenticatedRoute from './templates/AuthenticatedRoute';
+import UnauthenticatedRoute from "./templates/UnauthenticatedRoute";
+import AuthenticatedRoute from "./templates/AuthenticatedRoute";
 
-import Home from './pages/home';
-import NotFound from './pages/notfound';
-import Login from './pages/login';
-import Forgot from './pages/login/forgot';
-import Register from './pages/register';
-import Confirm from './pages/register/confirm';
-import Trails from './pages/trails';
-import Users from './pages/users';
+import Home from "./pages/home";
+import NotFound from "./pages/notfound";
+import Login from "./pages/login";
+import Forgot from "./pages/login/forgot";
+import Register from "./pages/register";
+import Confirm from "./pages/register/confirm";
+import Trails from "./pages/trails";
+import { Users } from "./pages/users";
 
-import Amplify from 'aws-amplify';
-import aws_config from '../src/aws_config';
+import Amplify from "aws-amplify";
+import aws_config from "../src/aws_config";
 
 Amplify.configure({
   Auth: {
@@ -30,16 +30,16 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: 'trails',
+        name: "trails",
         endpoint: aws_config.endpoint.url,
       },
       {
-        name: 'api',
+        name: "api",
         endpoint: aws_config.apiGateway.URL,
         region: aws_config.apiGateway.REGION,
       },
       {
-        name: 'users',
+        name: "users",
         endpoint: aws_config.endpoint.url,
         region: aws_config.users.REGION,
       },

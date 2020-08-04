@@ -1,19 +1,19 @@
-import * as userActions from '../actions/users'
+import * as userActions from "../actions/users";
 
 const initialState = {
-  users: []
-}
+  users: [],
+};
 
 export default (state = initialState, action) => {
-  const { type, users } = action
+  const { type, users } = action;
 
   switch (type) {
     case userActions.USERS_SUCCESS:
       return {
         ...state,
-        users: users
-      }
+        users: users,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
