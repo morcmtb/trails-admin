@@ -1,4 +1,4 @@
-import * as userActions from "../actions/users";
+import * as userActions from '../actions/users';
 
 const initialState = {
   users: [],

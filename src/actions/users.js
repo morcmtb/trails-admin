@@ -1,9 +1,9 @@
-import { API } from "aws-amplify";
-import aws_config from "../../src/aws_config";
+import { API } from 'aws-amplify';
+import aws_config from '../../src/aws_config';
 
-export const USERS_REQUEST = "USERS_REQUEST";
-export const USERS_SUCCESS = "USERS_SUCCESS";
-export const USERS_FAILURE = "USERS_FAILURE";
+export const USERS_REQUEST = 'USERS_REQUEST';
+export const USERS_SUCCESS = 'USERS_SUCCESS';
+export const USERS_FAILURE = 'USERS_FAILURE';
 
 function getUsersRequest() {
   return {
@@ -28,8 +28,8 @@ function getUsersFailure(error) {
 export function getUsers() {
   return (dispatch, getState) => {
     dispatch(getUsersRequest());
-    return API.get("users", "/v1/users", {
-      headers: { Accept: "application/json" },
+    return API.get('users', '/v1/users', {
+      headers: { Accept: 'application/json' },
       response: true,
     })
       .then((res) => {

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { DateTime } from "luxon";
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { push } from 'react-router-redux';
+import { DateTime } from 'luxon';
 import {
   makeStyles,
   List,
@@ -12,10 +13,13 @@ import {
   IconButton,
   Typography,
   Chip,
-} from "@material-ui/core";
-import { Image, Delete } from "@material-ui/icons";
+  View,
+  Divider,
+  Grid,
+} from '@material-ui/core';
+import { ChevronRight, Delete } from '@material-ui/icons';
 
-import { getUsers } from "../../actions/users";
+import { getUsers } from '../../actions/users';
 
 export function Users(props) {
   const dispatch = useDispatch();
@@ -29,41 +33,49 @@ export function Users(props) {
   return (
     <div>
       <List>
-        {users.map((user, uid) => {
-          console.log(user);
+        {users.map((user) => {
           const { Attributes, Username, UserCreateDate, groups } = user;
+          const { Value } = Attributes.filter((a) => a.Name === 'email')[0];
+
           return (
-            <ListItem key={uid}>
-              <ListItemAvatar>
-                <Avatar>
-                  <Image />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText
-                primary={Username}
-                secondary={
-                  <>
-                    <Typography>
-                      {DateTime.fromISO(UserCreateDate).toLocaleString({
-                        weekday: "short",
-                        month: "short",
-                        day: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </Typography>
-                    {groups.map((group, gid) => (
-                      <Group {...group} />
-                    ))}
-                  </>
-                }
-              />
-              <ListItemSecondaryAction>
-                <IconButton>
-                  <Delete />
+            <>
+              <ListItem key={Username}>
+                <ListItemAvatar>
+                  <Avatar>{Value.charAt(0).toUpperCase()}</Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={Value}
+                  secondary={DateTime.fromISO(UserCreateDate).toLocaleString({
+                    weekday: 'short',
+                    month: 'short',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
+                />
+
+                <div
+                  style={{
+                    display: 'flex',
+                    flex: 1,
+                    border: 'solid 1px red',
+                  }}
+                >
+                  {groups.map((group, gid) => (
+                    <Group key={gid} {...group} />
+                  ))}
+                </div>
+
+                <IconButton
+                  onClick={() => {
+                    dispatch(push(`/users/${Username}`));
+                  }}
+                >
+                  <ChevronRight />
                 </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
+              </ListItem>
+              <Divider />
+            </>
           );
         })}
       </List>
@@ -73,14 +85,5 @@ export function Users(props) {
 
 function Group(props) {
   const { GroupName } = props;
-  const [active, setActive] = useState(false);
-  return (
-    <Chip
-      size="small"
-      variant={active ? "outlined" : "default"}
-      label={GroupName}
-      onClick={() => setActive(!active)}
-      onDelete={() => alert("delete user action")}
-    />
-  );
+  return <Chip size="small" variant={'outlined'} label={GroupName} />;
 }
