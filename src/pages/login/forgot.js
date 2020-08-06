@@ -1,41 +1,41 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import Container from '../../molecules/container'
-import Column from '../../molecules/column'
+import Container from '../../molecules/container';
+import Column from '../../molecules/column';
 
-import { forgotPassword, forgotPasswordSubmit } from '../../actions/auth'
+import { forgotPassword, forgotPasswordSubmit } from '../../actions/auth';
 
 class Forgot extends Component {
   state = {
     email: '',
     confirmationCode: '',
-    password: ''
-  }
+    password: '',
+  };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
+      [e.target.id]: e.target.value,
+    });
+  };
 
-  handleSubmit = async e => {
-    e.preventDefault()
+  handleSubmit = async (e) => {
+    e.preventDefault();
 
     if (this.props.forgotStepTwo) {
       this.props.forgotPasswordSubmit(
         this.state.email,
         this.state.confirmationCode,
         this.state.password
-      )
+      );
     } else {
-      this.props.forgotPassword(this.state.email)
+      this.props.forgotPassword(this.state.email);
     }
-  }
+  };
 
   render() {
-    const { errors, forgotStepTwo } = this.props
+    const { errors, forgotStepTwo } = this.props;
     return (
       <Container>
         <Column styles="is-4 is-offset-4">
@@ -59,8 +59,8 @@ class Forgot extends Component {
                   placeholder="Email"
                   autoFocus
                   value={this.state.email}
-                  onChange={e => {
-                    this.handleChange(e)
+                  onChange={(e) => {
+                    this.handleChange(e);
                   }}
                 />
               </div>
@@ -81,8 +81,8 @@ class Forgot extends Component {
                   placeholder="Confirmation Code"
                   autoFocus
                   value={this.state.confirmationCode}
-                  onChange={e => {
-                    this.handleChange(e)
+                  onChange={(e) => {
+                    this.handleChange(e);
                   }}
                 />
               </div>
@@ -123,32 +123,24 @@ class Forgot extends Component {
               Submit
             </button>
           </div>
-          <p>
-            <Link to="/register" style={{ paddingLeft: 5 }}>
-              Sign Up
-            </Link>
-          </p>
         </Column>
       </Container>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = {
-  forgotPassword: username => forgotPassword(username),
+  forgotPassword: (username) => forgotPassword(username),
   forgotPasswordSubmit: (username, code, new_password) =>
-    forgotPasswordSubmit(username, code, new_password)
-}
+    forgotPasswordSubmit(username, code, new_password),
+};
 
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
     errors: state.errors,
     username: state.auth.username,
-    forgotStepTwo: state.auth.forgotStepTwo
-  }
-}
+    forgotStepTwo: state.auth.forgotStepTwo,
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Forgot)
+export default connect(mapStateToProps, mapDispatchToProps)(Forgot);
