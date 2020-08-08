@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
-import { login, logout, resendConfirmation } from '../../actions/auth'
+import { login, logout, resendConfirmation } from "../../actions/auth";
 
-import Container from '../../molecules/container'
-import Column from '../../molecules/column'
+import Container from "../../molecules/container";
+import Column from "../../molecules/column";
 
 class Login extends Component {
   state = {
-    email: '',
-    password: ''
-  }
+    email: "",
+    password: "",
+  };
 
-  handleSubmit = async e => {
-    e.preventDefault()
-    this.props.login(this.state.email, this.state.password)
-  }
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    this.props.login(this.state.email, this.state.password);
+  };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.id]: e.target.value
-    })
-  }
+      [e.target.id]: e.target.value,
+    });
+  };
 
   render() {
-    const { errors, resendConfirmation } = this.props
-    const { email } = this.state
+    const { errors, resendConfirmation } = this.props;
+    const { email } = this.state;
 
     return (
       <Container>
@@ -39,35 +39,35 @@ class Login extends Component {
                   <input
                     id="email"
                     className={
-                      'input ' +
+                      "input " +
                       (errors &&
-                      (errors.code === 'UserNotFoundException' ||
-                        errors.code === 'NotAuthorizedException' ||
-                        errors.code === 'UserNotConfirmedException')
-                        ? 'is-danger'
-                        : '')
+                      (errors.code === "UserNotFoundException" ||
+                        errors.code === "NotAuthorizedException" ||
+                        errors.code === "UserNotConfirmedException")
+                        ? "is-danger"
+                        : "")
                     }
                     type="email"
                     placeholder="Email"
                     autoFocus
                     value={this.state.email}
-                    onChange={e => {
-                      this.handleChange(e)
+                    onChange={(e) => {
+                      this.handleChange(e);
                     }}
                   />
                 </div>
                 {errors &&
-                  (errors.code === 'UserNotFoundException' ||
-                    errors.code === 'NotAuthorizedException' ||
-                    errors.code === 'UserNotConfirmedException') && (
+                  (errors.code === "UserNotFoundException" ||
+                    errors.code === "NotAuthorizedException" ||
+                    errors.code === "UserNotConfirmedException") && (
                     <p className="help is-danger">
-                      {errors.message}{' '}
-                      {errors.code === 'UserNotConfirmedException' && (
+                      {errors.message}{" "}
+                      {errors.code === "UserNotConfirmedException" && (
                         <span
-                          style={{ textDecoration: 'underline' }}
+                          style={{ textDecoration: "underline" }}
                           onClick={() => resendConfirmation(email)}
                         >
-                          {' '}
+                          {" "}
                           resend code
                         </span>
                       )}
@@ -80,10 +80,10 @@ class Login extends Component {
                   <input
                     id="password"
                     className={
-                      'input ' +
-                      (errors && errors.code === 'NotAuthorizedException'
-                        ? 'is-danger'
-                        : '')
+                      "input " +
+                      (errors && errors.code === "NotAuthorizedException"
+                        ? "is-danger"
+                        : "")
                     }
                     type="password"
                     placeholder="Password"
@@ -102,33 +102,27 @@ class Login extends Component {
             </form>
           </div>
           <div>
-            <Link to="/register" className="is-pull-left">
-              Sign Up
-            </Link>
             <Link to="/forgot" className="is-pulled-right">
               Forgot Password
             </Link>
           </div>
         </Column>
       </Container>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = {
   login,
   logout,
-  resendConfirmation: username => resendConfirmation(username)
-}
+  resendConfirmation: (username) => resendConfirmation(username),
+};
 
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
     errors: state.errors,
-    username: state.auth.username
-  }
-}
+    username: state.auth.username,
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
