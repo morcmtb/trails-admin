@@ -8,7 +8,7 @@ import { requestTrails, updateTrail } from "../../actions/trails";
 class TrailsDetail extends Component {
   state = {
     trailStatus: "",
-    trailDescription: ""
+    trailDescription: "",
   };
   componentDidMount() {
     if (this.props.trails.length === 0) {
@@ -16,32 +16,32 @@ class TrailsDetail extends Component {
     }
   }
 
-  handleSubmit = async e => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { trails, match } = this.props,
-      trail = trails.filter(t => t.trailId === match.params.id)[0];
+      trail = trails.filter((t) => t.trailId === match.params.id)[0];
 
     this.props.updateTrail({
       trailId: trail.trailId,
-      trailDescription: this.state.trailDescription,
-      trailStatus: this.state.trailStatus
+      description: this.state.trailDescription,
+      trailStatus: this.state.trailStatus,
     });
   };
 
-  handleUpdateTrail = status => {
+  handleUpdateTrail = (status) => {
     this.setState({
-      trailStatus: status
+      trailStatus: status,
     });
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.currentTarget.id]: e.currentTarget.value
+      [e.currentTarget.id]: e.currentTarget.value,
     });
   };
   render() {
     const { trails, match, isLoading } = this.props,
-      trail = trails.filter(t => t.trailId === match.params.id)[0];
+      trail = trails.filter((t) => t.trailId === match.params.id)[0];
 
     return (
       <div className="container ">
@@ -78,7 +78,7 @@ class TrailsDetail extends Component {
                         <select
                           className="select"
                           defaultValue={trail.trailStatus}
-                          onChange={e =>
+                          onChange={(e) =>
                             this.handleUpdateTrail(e.currentTarget.value)
                           }
                         >
@@ -107,7 +107,7 @@ class TrailsDetail extends Component {
                         type="text"
                         placeholder="Description of the trail conditions (optional)"
                         value={this.state.trailDescription}
-                        onChange={e => {
+                        onChange={(e) => {
                           this.handleChange(e);
                         }}
                       />
@@ -143,12 +143,12 @@ class TrailsDetail extends Component {
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
     trails: state.trails.trails,
-    isLoading: state.trails.isLoading
+    isLoading: state.trails.isLoading,
   };
 };
 const mapDispatchToProps = {
   requestTrails,
-  updateTrail: trail => updateTrail(trail)
+  updateTrail: (trail) => updateTrail(trail),
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrailsDetail);

@@ -18,6 +18,8 @@ import Confirm from "./pages/register/confirm";
 import Trails from "./pages/trails";
 import Users from "./pages/users";
 
+import { CreateTrail } from "./pages/trails/create";
+
 import Amplify from "aws-amplify";
 import aws_config from "../src/aws_config";
 
@@ -27,21 +29,21 @@ Amplify.configure({
     region: aws_config.cognito.REGION,
     userPoolId: aws_config.cognito.USER_POOL_ID,
     userPoolWebClientId: aws_config.cognito.APP_CLIENT_ID,
-    mandatorySignIn: false //TODO: research this flag
+    mandatorySignIn: false, //TODO: research this flag
   },
   API: {
     endpoints: [
       {
         name: "trails",
-        endpoint: aws_config.endpoint.url
+        endpoint: aws_config.endpoint.url,
       },
       {
         name: "api",
         endpoint: aws_config.apiGateway.URL,
-        region: aws_config.apiGateway.REGION
-      }
-    ]
-  }
+        region: aws_config.apiGateway.REGION,
+      },
+    ],
+  },
 });
 
 class router extends Component {
@@ -54,9 +56,10 @@ class router extends Component {
       <Switch>
         <UnauthenticatedRoute exact path="/" component={Login} />
         <UnauthenticatedRoute path="/forgot" component={Forgot} />
-        <UnauthenticatedRoute path="/register" component={Register} />
+        <UnauthenticatedRoute path="/todolaterregister" component={Register} />
         <UnauthenticatedRoute path="/confirm" component={Confirm} />
         <AuthenticatedRoute exact path="/trails" component={Home} />
+        <AuthenticatedRoute exact path="/createtrail" component={CreateTrail} />
         <AuthenticatedRoute exact path="/users" component={Users} />
         <AuthenticatedRoute exact path="/trails/:id" component={Trails} />
         <AuthenticatedRoute exact component={NotFound} />
@@ -67,7 +70,7 @@ class router extends Component {
 
 const mapStateToProps = (state /*, ownProps*/) => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
   };
 };
 const mapDispatchToProps = { currentSession };

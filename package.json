@@ -5,6 +5,8 @@
   "dependencies": {
     "@fortawesome/pro-light-svg-icons": "^5.14.0",
     "@fortawesome/pro-regular-svg-icons": "^5.14.0",
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "aws-amplify": "^3.0.22",
     "aws-amplify-react": "^4.1.21",
     "aws-sdk": "^2.728.0",
