@@ -72,7 +72,7 @@ class TrailsDetail extends Component {
               <div className="card-content">
                 <div className="content">
                   <div className="field">
-                    <label className="label">Subject</label>
+                    <label className="label">Status</label>
                     <div className="control is-expanded">
                       <div className="select is-fullwidth">
                         <select
@@ -99,7 +99,7 @@ class TrailsDetail extends Component {
                   </div>
                   <p>Description: {trail.description}</p>
                   <div className="field">
-                    <label className="label">Message</label>
+                    <label className="label">Description</label>
                     <div className="control">
                       <textarea
                         id="trailDescription"
