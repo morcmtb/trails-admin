@@ -36,7 +36,7 @@ export const TrailsDetail = (props) => {
     if (trails.length === 0) {
       dispatch(requestTrails());
     }
-  }, [trails]);
+  }, [trails, dispatch]);
 
   useEffect(() => {}, [trail]);
 
