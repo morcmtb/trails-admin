@@ -15,9 +15,10 @@ import Login from "./pages/login";
 import Forgot from "./pages/login/forgot";
 import Register from "./pages/register";
 import Confirm from "./pages/register/confirm";
-import Trails from "./pages/trails";
+
 import Users from "./pages/users";
 
+import { TrailsDetail } from "./pages/trails";
 import { CreateTrail } from "./pages/trails/create";
 
 import Amplify from "aws-amplify";
@@ -61,7 +62,7 @@ class router extends Component {
         <AuthenticatedRoute exact path="/trails" component={Home} />
         <AuthenticatedRoute exact path="/createtrail" component={CreateTrail} />
         <AuthenticatedRoute exact path="/users" component={Users} />
-        <AuthenticatedRoute exact path="/trails/:id" component={Trails} />
+        <AuthenticatedRoute exact path="/trails/:id" component={TrailsDetail} />
         <AuthenticatedRoute exact component={NotFound} />
       </Switch>
     );
