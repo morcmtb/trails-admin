@@ -1,18 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  Container,
-  Typography,
-  TextField,
-  Select,
-  MenuItem,
-  makeStyles,
-  FormControl,
-  InputLabel,
-  Grid,
-  Button,
-  Paper,
-} from '@material-ui/core';
+import React from 'react';
+import { Container, makeStyles, Paper } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
 
 export const Reset = (props) => {
   const classes = useStyles();
-  const dispatch = useDispatch();
 
   return (
     <Container maxWidth="lg" className={classes.root}>
