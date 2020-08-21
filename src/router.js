@@ -1,28 +1,29 @@
-import React, { Component } from "react";
-import { Switch } from "react-router";
+import React, { Component } from 'react';
+import { Switch } from 'react-router';
 
-import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-import { currentSession } from "./actions/auth";
+import { currentSession } from './actions/auth';
 
-import UnauthenticatedRoute from "./templates/UnauthenticatedRoute";
-import AuthenticatedRoute from "./templates/AuthenticatedRoute";
+import UnauthenticatedRoute from './templates/UnauthenticatedRoute';
+import AuthenticatedRoute from './templates/AuthenticatedRoute';
 
-import Home from "./pages/home";
-import NotFound from "./pages/notfound";
-import Login from "./pages/login";
-import Forgot from "./pages/login/forgot";
-import Register from "./pages/register";
-import Confirm from "./pages/register/confirm";
+import Home from './pages/home';
+import NotFound from './pages/notfound';
+import Login from './pages/login';
+import Forgot from './pages/login/forgot';
+import Register from './pages/register';
+import Confirm from './pages/register/confirm';
 
-import Users from "./pages/users";
+import Users from './pages/users';
 
-import { TrailsDetail } from "./pages/trails";
-import { CreateTrail } from "./pages/trails/create";
+import { Reset } from './pages/login/reset';
+import { TrailsDetail } from './pages/trails';
+import { CreateTrail } from './pages/trails/create';
 
-import Amplify from "aws-amplify";
-import aws_config from "../src/aws_config";
+import Amplify from 'aws-amplify';
+import aws_config from '../src/aws_config';
 
 Amplify.configure({
   Auth: {
@@ -35,11 +36,11 @@ Amplify.configure({
   API: {
     endpoints: [
       {
-        name: "trails",
+        name: 'trails',
         endpoint: aws_config.endpoint.url,
       },
       {
-        name: "api",
+        name: 'api',
         endpoint: aws_config.apiGateway.URL,
         region: aws_config.apiGateway.REGION,
       },
@@ -59,6 +60,7 @@ class router extends Component {
         <UnauthenticatedRoute path="/forgot" component={Forgot} />
         <UnauthenticatedRoute path="/todolaterregister" component={Register} />
         <UnauthenticatedRoute path="/confirm" component={Confirm} />
+        <AuthenticatedRoute exact path="/reset" component={Reset} />
         <AuthenticatedRoute exact path="/trails" component={Home} />
         <AuthenticatedRoute exact path="/createtrail" component={CreateTrail} />
         <AuthenticatedRoute exact path="/users" component={Users} />
