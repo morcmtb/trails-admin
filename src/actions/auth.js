@@ -6,12 +6,18 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
 
+export const CHALLENGE_NAME = "CHALLENGE_NAME";
+
 export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 export const CONFIRM_SUCCESS = "CONFIRM_SUCCESS";
 export const CONFIRM_FAILURE = "CONFIRM_FAILURE";
 export const CONFIRM_RESEND = "CONFIRM_RESEND";
+
+export const RESET_PASSWORD = "RESET_PASSWORD";
+export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD_SUCCESS";
+export const RESET_PASSWORD_FAILURE = "RESET_PASSWORD_FAILURE";
 
 export const FORGOT_PASSWORD = "FORGOT_PASSWORD";
 export const FORGOT_PASSWORD_SUCCESS = "FORGOT_PASSWORD_SUCCESS";
@@ -39,6 +45,10 @@ function loginSuccess(user) {
     type: LOGIN_SUCCESS,
     user,
   };
+}
+
+function challengeName(user) {
+  return { type: CHALLENGE_NAME, user };
 }
 
 function loginFailure(error, username) {
@@ -131,8 +141,13 @@ export function login(username, password) {
     dispatch(loginRequest());
     return Auth.signIn(username, password)
       .then((res) => {
-        dispatch(loginSuccess(res));
-        dispatch(push("/trails"));
+        if (res.challengeName === "NEW_PASSWORD_REQUIRED") {
+          dispatch(challengeName(res));
+          dispatch(push("/reset"));
+        } else {
+          dispatch(loginSuccess(res));
+          dispatch(push("/trails"));
+        }
       })
       .catch((err) => {
         const error = {
@@ -235,6 +250,25 @@ export function forgotPasswordSubmit(username, code, new_password) {
       .catch((err) => {
         console.log(err);
         dispatch(changePasswordFailure(err));
+      });
+  };
+}
+
+export function resetPassword(user, newPassword) {
+  return (dispatch, getState) => {
+    return Auth.completeNewPassword(user, newPassword)
+      .then((res) => {
+        dispatch(loginSuccess(res));
+        dispatch(push("/trails"));
+      })
+      .catch((err) => {
+        const error = {
+          type: err.type,
+          code: err.code,
+          message: typeof err === "object" ? err.message : err,
+        };
+
+        return dispatch(loginFailure(error, user.username));
       });
   };
 }
