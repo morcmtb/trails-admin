@@ -9,6 +9,7 @@ import {
   TextField,
   Grid,
   Button,
+  FormHelperText,
 } from "@material-ui/core";
 import { resetPassword } from "../../actions/auth";
 
@@ -30,8 +31,8 @@ export const Reset = (props) => {
   const dispatch = useDispatch();
   const [newPassword, setNewPassword] = useState("");
   const { user } = useSelector((state) => state.auth);
-
-  console.log(user);
+  const error = useSelector((state) => state.errors);
+  console.log("error", error);
   return (
     <Container maxWidth="lg" className={classes.root}>
       <Paper elevation={5} className={classes.paper}>
@@ -43,8 +44,10 @@ export const Reset = (props) => {
               label="New Password"
               variant="outlined"
               value={newPassword}
+              error={error ? true : false}
               onChange={(e) => setNewPassword(e.target.value)}
             />
+            <FormHelperText>{error && error.message}</FormHelperText>
           </FormControl>
         </Grid>
         <Grid>
