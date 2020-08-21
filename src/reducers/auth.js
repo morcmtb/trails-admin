@@ -1,4 +1,4 @@
-import * as authActions from '../actions/auth';
+import * as authActions from "../actions/auth";
 
 const initialState = {
   isLoading: false,
@@ -8,6 +8,7 @@ const initialState = {
   code: null,
   forgotStepTwo: false,
   challengeName: false,
+  user: {},
 };
 
 export default (state = initialState, action) => {
@@ -20,6 +21,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         challengeName: true,
+        user,
       };
     case authActions.LOGIN_SUCCESS:
       return {
@@ -29,6 +31,7 @@ export default (state = initialState, action) => {
         username: false,
         code: null,
         challengeName: false,
+        user,
       };
     case authActions.LOGOUT:
       return {
@@ -37,6 +40,7 @@ export default (state = initialState, action) => {
         username: null,
         code: null,
         isConfirmed: false,
+        user: {},
       };
     case authActions.LOGIN_FAILURE:
       return {
@@ -44,7 +48,7 @@ export default (state = initialState, action) => {
         isLoading: false,
         username: action.username,
         isConfirmed:
-          action.error.code === 'UserNotConfirmedException' ? true : false,
+          action.error.code === "UserNotConfirmedException" ? true : false,
         code: action.error.code,
       };
     case authActions.REGISTER_SUCCESS:
@@ -55,6 +59,7 @@ export default (state = initialState, action) => {
         username: user.username,
         isConfirmed: user.isConfirmed,
         code: null,
+        user,
       };
 
     case authActions.CONFIRM_SUCCESS:
