@@ -9,7 +9,7 @@
     "@material-ui/icons": "^4.9.1",
     "aws-amplify": "^3.0.22",
     "aws-amplify-react": "^4.1.21",
-    "aws-sdk": "^2.728.0",
+    "aws-sdk": "^2.814.0",
     "bulma": "^0.9.0",
     "connected-react-router": "^6.8.0",
     "moment": "^2.27.0",
