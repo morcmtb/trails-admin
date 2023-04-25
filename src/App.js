@@ -32,7 +32,7 @@ function App() {
         </a>
         <p>
           <small>
-            If you need acess to Trailbot, please react out to the board or dirt
+            If you need acess to Trailbot, please reach out to the board or dirt
             bosses
           </small>
         </p>
