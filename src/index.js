@@ -1,55 +1,17 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-import { Provider } from 'react-redux'
-import { ConnectedRouter } from 'connected-react-router'
-import { store, history } from './store'
-import * as serviceWorker from './serviceWorker'
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
-
-import {
-  faAngleRight,
-  faThumbsUp,
-  faThumbsDown,
-  faLock,
-  faEnvelope,
-  faAngleLeft,
-  faCircleNotch,
-  faExclamationTriangle,
-  faCopyright,
-  faTrafficLightGo,
-  faTrafficLightStop
-} from '@fortawesome/pro-regular-svg-icons'
-
-import Router from './router'
-
-import './index.scss'
-
-library.add(
-  faAngleRight,
-  faThumbsUp,
-  faThumbsDown,
-  faLock,
-  faEnvelope,
-  faAngleLeft,
-  faCircleNotch,
-  faExclamationTriangle,
-  faCopyright,
-  faTrafficLightGo,
-  faTrafficLightStop
-)
-
-render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Router />
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root')
-)
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister()
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
